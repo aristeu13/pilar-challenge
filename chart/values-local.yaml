@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  repository: aristeu13/pilar-challenge
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
