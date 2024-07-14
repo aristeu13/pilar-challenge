@@ -1,5 +1,6 @@
-from app.model import WordsVowelIn, WordsSortIn, OrderType
 from fastapi import FastAPI
+from app.model import WordsVowelIn, WordsSortIn, OrderType
+
 
 app = FastAPI()
 
@@ -23,6 +24,4 @@ def route_vowel_count(data: WordsVowelIn):
 
 @app.post("/sort")
 def route_sort_words(data: WordsSortIn):
-    words = [word for word in data.words]
-
-    return sorted(words, reverse=True if data.order is OrderType.DESC else False)
+    return sorted(data.words, reverse=data.order is OrderType.DESC)
