@@ -49,5 +49,5 @@ jobs:
     
     - name: Terraform Apply
       id: apply
-      run: terraform apply
+      run: terraform apply -var-file="config/productions.tfvars" -auto-approve
       working-directory: infra
