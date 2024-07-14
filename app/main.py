@@ -1,5 +1,4 @@
-from typing import Union
-
+from app.model import WordsVowelIn, WordsSortIn, OrderType
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -10,6 +9,20 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.post("/vowel_count")
+def route_vowel_count(data: WordsVowelIn):
+    hash_map = {}
+    for word in data.words:
+        hash_map[word] = 0
+        for char in word.lower():
+            if char in "aeiou":
+                hash_map[word] += 1
+
+    return hash_map
+
+
+@app.post("/sort")
+def route_sort_words(data: WordsSortIn):
+    words = [word for word in data.words]
+
+    return sorted(words, reverse=True if data.order is OrderType.DESC else False)
