@@ -26,9 +26,6 @@ jobs:
 
     - uses: hashicorp/setup-terraform@v3
 
-    - name: Print directory structure
-      run: ls -R .
-
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check
@@ -47,10 +44,10 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color -var-file="config/productions.tfvars"
+      run: terraform plan -no-color -var-file="configs/productions.tfvars"
       working-directory: infra
     
     - name: Terraform Apply
       id: apply
-      run: terraform apply -var-file="config/productions.tfvars" -auto-approve
+      run: terraform apply -var-file="configs/productions.tfvars" -auto-approve
       working-directory: infra
