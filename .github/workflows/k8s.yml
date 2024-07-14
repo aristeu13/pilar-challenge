@@ -55,3 +55,6 @@ jobs:
 
     # - name: Uninstall with Helm
     #   run: helm uninstall pilar-challenge --namespace default
+
+    - name: auth
+      run: kubectl get configmap aws-auth -n kube-system -o yaml
