@@ -26,6 +26,11 @@ jobs:
 
     - uses: hashicorp/setup-terraform@v3
 
+    - name: Print directory structure
+      run: |
+        echo "Current directory structure:"
+        ls -R infra
+
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check
