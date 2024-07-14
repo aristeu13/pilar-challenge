@@ -17,6 +17,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Setup Border0 action
+      uses: borderzero/gh-action@v2
+      with:
+        token: ${{ secrets.BORDER0_ADMIN_TOKEN }}
+        background-mode: true
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -53,8 +59,15 @@ jobs:
     - name: Deploy with Helm
       run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
 
+    - name: Clean-up for Border0
+        if: always()
+        uses: borderzero/gh-action@v2
+        with:
+          token: ${{ secrets.BORDER0_ADMIN_TOKEN }}
+          clean-up-mode: true
+
     # - name: Uninstall with Helm
     #   run: helm uninstall pilar-challenge --namespace default
 
-    - name: auth
-      run: kubectl get configmap aws-auth -n kube-system -o yaml
+    # - name: auth
+    #   run: kubectl get configmap aws-auth -n kube-system -o yaml
