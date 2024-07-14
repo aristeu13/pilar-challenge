@@ -9,7 +9,7 @@ data:
         - system:bootstrappers
         - system:nodes
       rolearn: arn:aws:iam::983169537692:role/pilar-challenge-eks-cluster-node-role
-      username: "system:node:{{ '{{' }}EC2PrivateDNSName{{ '}}' }}"
+      username: system:node:{{ "{{" }}EC2PrivateDNSName{{ "}}" }}
   mapUsers: |
     - userarn: arn:aws:iam::983169537692:root
       username: admin
