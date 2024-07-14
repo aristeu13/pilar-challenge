@@ -1,6 +1,8 @@
 name: Build and Push
 
-on: [push]
+on:
+  workflow_call:
+
 
 permissions:
   id-token: write
