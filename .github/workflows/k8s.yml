@@ -50,6 +50,8 @@ jobs:
           pullPolicy: IfNotPresent
         EOF
 
-    - name: Deploy with Helm
-      run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
+    # - name: Deploy with Helm
+    #   run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
 
+    - name: Uninstall with Helm
+      run: helm uninstall pilar-challenge --namespace default
