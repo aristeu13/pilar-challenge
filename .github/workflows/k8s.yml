@@ -68,6 +68,10 @@ jobs:
           repository: 983169537692.dkr.ecr.us-east-1.amazonaws.com/pilar-challenge
           tag: ${{ github.sha }}
           pullPolicy: IfNotPresent
+        
+        grafana:
+          adminUser: admin
+          adminPassword: GRAFANA_PASSWORD_PLACEHOLDER
         EOF
 
     - name: Deploy Pilar Challenge with Helm
