@@ -36,7 +36,7 @@ jobs:
 
     - name: Get kubeconfig
       run: |
-        aws eks update-kubeconfig --name my-eks-cluster --region us-east-1
+        aws eks update-kubeconfig --name "pilar-challenge-eks-cluster" --region us-east-1
         echo "KUBECONFIG=$HOME/.kube/config" >> $GITHUB_ENV
 
     - name: Create values file
