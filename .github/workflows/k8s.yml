@@ -57,9 +57,9 @@ jobs:
 
     - name: Deploy with Helm
       run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
-
-    - name: teste
-      run: kubectl get 
     
-    - name: t
+    - name: teste
+      run: kubectl get pods
+
+    - name: ttest
       run: kubectl logs prometheus-65b449f75f-4nkcn
