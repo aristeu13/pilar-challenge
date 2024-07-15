@@ -38,6 +38,11 @@ jobs:
       run: |
         aws eks update-kubeconfig --name "my-eks-cluster" --region us-east-1
         echo "KUBECONFIG=$HOME/.kube/config" >> $GITHUB_ENV
+    
+    - name: Base64 encode Grafana password
+      id: encode_password
+      run: |
+        echo "encoded_password=$(echo -n '${{ secrets.GRAFANA_PASSWORD }}' | base64)" >> $GITHUB_ENV
 
     - name: Create values file
       run: |
@@ -50,7 +55,7 @@ jobs:
           pullPolicy: IfNotPresent
         
         grafana:
-          adminPassword: ${{secrets.GRAFANA_PASSWORD}}
+          adminPassword: ${encoded_password}
         EOF
 
     - name: Deploy with Helm
