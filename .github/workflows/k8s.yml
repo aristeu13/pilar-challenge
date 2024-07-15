@@ -53,6 +53,7 @@ jobs:
         GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
       run: |
         sed -i 's/GRAFANA_PASSWORD_PLACEHOLDER/'"$GRAFANA_PASSWORD"'/g' ./chart/prometheus-values.yaml
+        cat ./chart/prometheus-values.yaml
 
     - name: Deploy Prometheus with Helm
       run: |
