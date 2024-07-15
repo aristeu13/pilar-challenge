@@ -3,17 +3,17 @@ resource "aws_eks_cluster" "eks_cluster" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_master_role.arn
   version  = var.kubernetes_version
-  
+
   vpc_config {
 
-      subnet_ids = [
-          var.private_subnet_1a, 
-          var.private_subnet_1b
-      ]
-      
+    subnet_ids = [
+      var.private_subnet_1a,
+      var.private_subnet_1b
+    ]
+
   }
 
-    enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+  enabled_cluster_log_types = ["authenticator"]
 
 
   depends_on = [

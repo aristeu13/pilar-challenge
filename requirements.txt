@@ -196,6 +196,12 @@ orjson==3.10.6 ; python_version >= "3.12" and python_version < "4.0" \
     --hash=sha256:f759503a97a6ace19e55461395ab0d618b5a117e8d0fbb20e70cfd68a47327f2 \
     --hash=sha256:fb0ee33124db6eaa517d00890fc1a55c3bfe1cf78ba4a8899d71a06f2d6ff5c7 \
     --hash=sha256:fd502f96bf5ea9a61cbc0b2b5900d0dd68aa0da197179042bdd2be67e51a1e4b
+prometheus-client==0.20.0 ; python_version >= "3.12" and python_version < "4.0" \
+    --hash=sha256:287629d00b147a32dcb2be0b9df905da599b2d82f80377083ec8463309a4bb89 \
+    --hash=sha256:cde524a85bce83ca359cc837f28b8c0db5cac7aa653a588fd7e84ba061c329e7
+prometheus-fastapi-instrumentator==7.0.0 ; python_version >= "3.12" and python_version < "4.0" \
+    --hash=sha256:5ba67c9212719f244ad7942d75ded80693b26331ee5dfc1e7571e4794a9ccbed \
+    --hash=sha256:96030c43c776ee938a3dae58485ec24caed7e05bfc60fe067161e0d5b5757052
 pydantic-core==2.20.1 ; python_version >= "3.12" and python_version < "4.0" \
     --hash=sha256:035ede2e16da7281041f0e626459bcae33ed998cca6a0a007a5ebb73414ac72d \
     --hash=sha256:04024d270cf63f586ad41fff13fde4311c4fc13ea74676962c876d9577bcc78f \
