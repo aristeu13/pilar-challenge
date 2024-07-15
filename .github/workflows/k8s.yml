@@ -59,4 +59,4 @@ jobs:
       run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
 
     - name: teste
-      run: kubectl get endpoints pilar-challenge-service
+      run: kubectl get pods
