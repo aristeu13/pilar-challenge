@@ -43,9 +43,6 @@ jobs:
         aws eks update-kubeconfig --name "my-eks-cluster" --region us-east-1
         echo "KUBECONFIG=$HOME/.kube/config" >> $GITHUB_ENV
 
-    - name: uninstall
-      run: helm uninstall pilar-challenge
-
     - name: Create Values File
       env:
         GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
