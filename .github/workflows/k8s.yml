@@ -65,6 +65,39 @@ jobs:
         prometheus:
           service:
             type: ClusterIP
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+            alerting:
+              alertmanagers: []
+            ruleSelectorNilUsesHelmValues: false
+            podMonitorSelectorNilUsesHelmValues: false
+            probeSelectorNilUsesHelmValues: false
+            enableAdminAPI: false
+            serviceMonitorSelector: {}
+            ruleSelector: {}
+            podMonitorSelector: {}
+            probeSelector: {}
+
+        alertmanager:
+          enabled: false
+
+        kubeStateMetrics:
+          enabled: false
+
+        nodeExporter:
+          enabled: false
+
+        grafana:
+          enabled: true
+          adminPassword: $GRAFANA_PASSWORD
+          service:
+            type: LoadBalancer
+            annotations:
+              service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+          grafana.ini:
+            security:
+              admin_user: "admin"
+              admin_password: $GRAFANA_PASSWORD
         EOF
 
     - name: Add Prometheus Helm Repo
@@ -74,15 +107,11 @@ jobs:
 
     - name: Deploy Prometheus with Helm
       run: |
-        helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --values prometheus-values-temp.yaml --namespace default --timeout 10m0s --atomic
-
-    - name: Check Prometheus Deployment Status
-      run: |
-        kubectl rollout status deployment/prometheus-kube-prometheus-prometheus -n default
+        helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --values prometheus-values-temp.yaml --namespace default --timeout 15m --atomic
 
     - name: Deploy Pilar Challenge with Helm
       run: |
-        helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default --timeout 10m0s --atomic
+        helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default --timeout 15m --atomic
 
-    - name: Get Pods
+    - name: Get All Pods
       run: kubectl get pods --all-namespaces
