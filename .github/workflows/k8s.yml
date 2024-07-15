@@ -42,9 +42,11 @@ jobs:
     - name: Base64 encode Grafana password
       id: encode_password
       run: |
-        echo "encoded_password=$(echo -n '${{ secrets.GRAFANA_PASSWORD }}' | base64)" >> $GITHUB_ENV
+        echo "${{ secrets.GRAFANA_PASSWORD }}"
 
     - name: Create values file
+      env:
+        GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
       run: |
         cat <<EOF > values-temp.yaml
         replicaCount: 1
@@ -55,7 +57,7 @@ jobs:
           pullPolicy: IfNotPresent
         
         grafana:
-          adminPassword: ${encoded_password}
+          adminPassword: $GRAFANA_PASSWORD
         EOF
 
     - name: Deploy with Helm
