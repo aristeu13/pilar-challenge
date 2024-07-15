@@ -60,11 +60,11 @@ jobs:
       run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
 
     - name: Clean-up for Border0
-        if: always()
-        uses: borderzero/gh-action@v2
-        with:
-          token: ${{ secrets.BORDER0_ADMIN_TOKEN }}
-          clean-up-mode: true
+      if: always()
+      uses: borderzero/gh-action@v2
+      with:
+        token: ${{ secrets.BORDER0_ADMIN_TOKEN }}
+        clean-up-mode: true
 
     # - name: Uninstall with Helm
     #   run: helm uninstall pilar-challenge --namespace default
