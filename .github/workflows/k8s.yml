@@ -41,8 +41,10 @@ jobs:
     
     - name: Base64 encode Grafana password
       id: encode_password
+      env:
+        GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
       run: |
-        echo "${{ secrets.GRAFANA_PASSWORD }}"
+        echo "$GRAFANA_PASSWORD"
 
     - name: Create values file
       env:
