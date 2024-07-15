@@ -59,4 +59,7 @@ jobs:
       run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
 
     - name: teste
-      run: kubectl get pods
+      run: kubectl get 
+    
+    - name: t
+      run: kubectl logs prometheus-65b449f75f-4nkcn
