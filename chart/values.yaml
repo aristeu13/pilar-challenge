@@ -1,10 +1,6 @@
 replicaCount: 1
 
 image:
-  repository: 983169537692.dkr.ecr.us-east-1.amazonaws.com/pilar-challenge
-  tag: abdf3d34b6bb1c3aebae88711ddce40f4df02428
+  repository: aristeu13/pilar-challenge
+  tag: 0.0.1
   pullPolicy: IfNotPresent
-
-
-grafana:
-  adminPassword: admin
