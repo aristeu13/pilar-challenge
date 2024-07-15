@@ -56,7 +56,10 @@ jobs:
         EOF
 
     - name: Deploy with Helm
-      run: helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
+      run: |
+        helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+        helm repo update
+        helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default
     
     - name: rest
       run: kubectl rollout restart deployment prometheus
