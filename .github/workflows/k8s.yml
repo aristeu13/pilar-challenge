@@ -58,6 +58,17 @@ jobs:
       run: |
         helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --values ./chart/prometheus-values.yaml
 
+    - name: Create Values File
+      run: |
+        cat <<EOF > values-temp.yaml
+        replicaCount: 1
+
+        image:
+          repository: 983169537692.dkr.ecr.us-east-1.amazonaws.com/pilar-challenge
+          tag: ${{ github.sha }}
+          pullPolicy: IfNotPresent
+        EOF
+
     - name: Deploy Pilar Challenge with Helm
       run: |
         helm upgrade --install pilar-challenge ./chart --values values-temp.yaml --namespace default --timeout 15m --atomic
